@@ -20,7 +20,7 @@ interface UrlShortenerSchema {
 }
 
 const db = client.database('github')
-const coll = db.collection<UrlShortenerSchema>('url-shortener')
+const coll = db.collection<UrlShortenerSchema>('url_shortener')
 
 export const handler: Handlers<string | null> = {
 	async GET(
