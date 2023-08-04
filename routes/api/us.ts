@@ -16,7 +16,7 @@ interface UrlShortenerSchema {
 	hash: string
 	code: string
 	url: string
-	ts: string
+	ts: Date
 }
 
 const db = client.database('github')
@@ -37,13 +37,13 @@ export const handler: Handlers<string | null> = {
 		_ctx: HandlerContext<string | null>,
 	): Promise<Response> {
 		const url = await req.json() as string
-		const currentISODate = new Date().toISOString()
+		const ts = new Date()
 		const hash = new Hash('md5').digest(encode(url)).hex()
 		const doc = {
 			hash: hash,
 			code: hash.substring(0, 5),
 			url: url,
-			ts: currentISODate,
+			ts: ts,
 		}
 
 		const result = await coll.findOne({ hash: doc.hash })
