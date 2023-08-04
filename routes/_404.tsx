@@ -4,7 +4,7 @@ import { PageProps } from '$fresh/src/server/types.ts'
 export default async function Error404(props: PageProps) {
 	let data: any = {}
 	const code = props.url.toString().replace(props.url.origin + '/', '')
-	console.log('code:', code)
+	console.log('code:', code, props.url.origin)
 	if (code.length === 5) {
 		// 表示可能存在，查询数据库
 		const resp = await fetch('/api/us?code=' + code)
