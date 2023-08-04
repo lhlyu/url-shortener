@@ -6,7 +6,12 @@ export default async function Error404(props: PageProps) {
 	const code = props.url.toString().replace('https://s.tatakai.top/', '')
 	if (code.length === 5) {
 		// 表示可能存在，查询数据库
-		const resp = await fetch('/api/us?code=' + code)
+		const resp = await fetch('/api/us?code=' + code, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		})
 		data = await resp.json()
 		console.log('data:', data)
 	}

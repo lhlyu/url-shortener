@@ -54,7 +54,7 @@ export const handler: Handlers<string | null> = {
 		}
 
 		return new Response(JSON.stringify({
-			url: HOST_URI + '/' + result?.code ?? ''
+			url: HOST_URI + '/' + doc.code
 		}))
 	},
 }
