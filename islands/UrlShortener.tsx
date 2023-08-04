@@ -1,4 +1,4 @@
-import { type Signal, signal } from '@preact/signals'
+import { signal } from '@preact/signals'
 
 export default function UrlShortener() {
 	const loading = signal(false)
@@ -26,9 +26,8 @@ export default function UrlShortener() {
 				'Content-Type': 'application/json',
 			},
 		})
-		const data = await resp.text()
-		console.log(data)
-		short.value = data
+		const data = await resp.json()
+		short.value = data.url
 		loading.value = false
 	}
 

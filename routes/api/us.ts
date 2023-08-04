@@ -3,6 +3,7 @@ import { MongoClient, ObjectId } from 'https://deno.land/x/mongo/mod.ts'
 import { HandlerContext, Handlers } from '$fresh/server.ts'
 
 const MONGODB_URI = Deno.env.get('MONGODB_URI') ?? ''
+const HOST_URI = Deno.env.get('HOST_URI') ?? ''
 
 const client = new MongoClient()
 
@@ -52,6 +53,8 @@ export const handler: Handlers<string | null> = {
 			await coll.insertOne(doc)
 		}
 
-		return new Response(JSON.stringify(doc))
+		return new Response(JSON.stringify({
+			url: HOST_URI + '/' + result?.code ?? ''
+		}))
 	},
 }
