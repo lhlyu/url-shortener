@@ -44,8 +44,9 @@ function App() {
 		setLoading(false)
 	}
 
-	const outputHandler = (e: Event) => {
-		;(e.target as HTMLInputElement).select()
+	const outputHandler = async (e: Event) => {
+		(e.target as HTMLInputElement).select()
+		await navigator.clipboard.writeText(outputUrl())
 	}
 
 	onMount(() => {
@@ -78,7 +79,7 @@ function App() {
 						disabled={loading()}
 						type='text'
 						readonly
-						placeholder='生成后的短链'
+						placeholder='生成后的短链,点击自动复制'
 					/>
 				</section>
 			</main>
