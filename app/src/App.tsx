@@ -1,9 +1,10 @@
 import { createSignal, onMount } from 'solid-js'
+import ClipboardJS from 'clipboard'
 import './App.css'
 
 function App() {
 	const [inputUrl, setInputUrl] = createSignal('')
-	const [outputUrl, setOutputUrl] = createSignal('')
+	const [outputUrl, setOutputUrl] = createSignal('12332safa')
 
 	const [loading, setLoading] = createSignal(false)
 
@@ -46,7 +47,6 @@ function App() {
 
 	const outputHandler = async (e: Event) => {
 		(e.target as HTMLInputElement).select()
-		await navigator.clipboard.writeText(outputUrl())
 	}
 
 	onMount(() => {
@@ -54,6 +54,7 @@ function App() {
 			'--app-height',
 			window.innerHeight + 'px',
 		)
+		new ClipboardJS('#output')
 	})
 
 	return (
@@ -74,12 +75,14 @@ function App() {
 						value='生成'
 					/>
 					<input
+						id='output'
 						onClick={outputHandler}
+						data-clipboard-text={outputUrl()}
 						value={outputUrl()}
 						disabled={loading()}
 						type='text'
-						readonly
-						placeholder='生成后的短链'
+						readOnly
+						placeholder='生成后的短链，点击复制'
 					/>
 				</section>
 			</main>
