@@ -37,6 +37,12 @@ header {
   color: #2d3436;
 }
 
+.btns {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 10px;
+}
+
 input::placeholder, textarea::placeholder {
   color: #636e72;
   font-size: 0.875em;

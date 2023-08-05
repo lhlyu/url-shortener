@@ -45,6 +45,11 @@ function App() {
 		setLoading(false)
 	}
 
+	const clearHandler = () => {
+		setInputUrl('')
+		setOutputUrl('')
+	}
+
 	const outputHandler = async (e: Event) => {
 		(e.target as HTMLInputElement).select()
 	}
@@ -64,16 +69,25 @@ function App() {
 				<section>
 					<textarea
 						onInput={onInputUrlHandler}
+						value={inputUrl()}
 						disabled={loading()}
 						placeholder='链接'
 					>
 					</textarea>
-					<input
-						onClick={createHandler}
-						disabled={loading()}
-						type='button'
-						value='生成'
-					/>
+					<div class="btns">
+						<input
+							onClick={createHandler}
+							disabled={loading()}
+							type='button'
+							value='生成'
+						/>
+						<input
+							onClick={clearHandler}
+							disabled={loading()}
+							type='button'
+							value='清空'
+						/>
+					</div>
 					<input
 						id='output'
 						onClick={outputHandler}
