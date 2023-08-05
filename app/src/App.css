@@ -1,0 +1,87 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --app-height: 100vh;
+}
+
+body {
+  height: var(--app-height, 100vh);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+
+section {
+  max-width: 500px;
+  width: 94%;
+}
+
+header {
+  position: relative;
+  margin: 0 0 25px 0;
+  font-size: 2.3em;
+  text-align: center;
+  letter-spacing: 7px;
+}
+
+#form {
+  position: relative;
+  width: 100%;
+  color: #2d3436;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #636e72;
+  font-size: 0.875em;
+}
+
+input:hover, textarea:hover {
+  border: solid 1px #636e72;
+}
+
+input:disabled, textarea:disabled {
+  opacity: 0.3;
+  user-select: none;
+}
+
+input:disabled:hover, textarea:disabled:hover {
+  border: solid 1px #dfe6e9;
+}
+
+input {
+  width: 100%;
+  height: 50px;
+  padding: 0 10px;
+  background: transparent;
+  outline: none;
+  border: solid 1px #dfe6e9;
+  transition: all 0.3s ease-in-out;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+input:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+textarea {
+  width: 100%;
+  height: 110px;
+  max-height: 110px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  resize: none;
+  background: transparent;
+  outline: none;
+  border: solid 1px #dfe6e9;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
