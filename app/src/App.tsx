@@ -4,7 +4,7 @@ import './App.css'
 
 function App() {
 	const [inputUrl, setInputUrl] = createSignal('')
-	const [outputUrl, setOutputUrl] = createSignal('12332safa')
+	const [outputUrl, setOutputUrl] = createSignal('')
 
 	const [loading, setLoading] = createSignal(false)
 
