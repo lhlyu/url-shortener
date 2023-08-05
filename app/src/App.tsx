@@ -79,7 +79,7 @@ function App() {
 						disabled={loading()}
 						type='text'
 						readonly
-						placeholder='生成后的短链,点击自动复制'
+						placeholder='生成后的短链'
 					/>
 				</section>
 			</main>
