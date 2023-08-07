@@ -1,4 +1,4 @@
-import { createSignal, onMount } from 'solid-js'
+import { createSignal, onMount, batch } from 'solid-js'
 import ClipboardJS from 'clipboard'
 import './App.css'
 
@@ -20,8 +20,10 @@ function App() {
 
 		const url = inputUrl().trim()
 		if (!url.length) {
-			setInputUrl('')
-			setLoading(false)
+			batch(() => {
+				setInputUrl('')
+				setLoading(false)
+			})
 			return
 		}
 
@@ -46,8 +48,10 @@ function App() {
 	}
 
 	const clearHandler = () => {
-		setInputUrl('')
-		setOutputUrl('')
+		batch(() => {
+			setInputUrl('')
+			setOutputUrl('')
+		})
 	}
 
 	const outputHandler = async (e: Event) => {
