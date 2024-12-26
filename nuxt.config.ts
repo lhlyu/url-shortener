@@ -11,10 +11,6 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-api-shield',
     'nuxt-csurf',
+    'nitro-cloudflare-dev',
   ],
-  routeRules: {
-    '/api/create': {
-      csurf: true
-    },
-  }
 })

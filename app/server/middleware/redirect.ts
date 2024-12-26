@@ -18,7 +18,36 @@ export default defineEventHandler(async (event) => {
     }
 
     if (!white) {
-        await sendRedirect(event, '/404', 302)
-        return
+        const KV = event.context.cloudflare.env.KV
+
+        const code = url.pathname.substring(1)
+
+        const value = await KV.get(code)
+
+        if (!value) {
+            return sendRedirect(event, '/404', 302)
+        }
+
+        if (isURL(value)) {
+            return sendRedirect(event, value, 302)
+        }
+
+        return sendWebResponse(
+            event,
+            new Response(value, {
+                headers: {
+                    'Content-Type': 'text/plain',
+                },
+            }),
+        )
     }
 })
+
+function isURL(str: string): boolean {
+    try {
+        new URL(str)
+        return true
+    } catch (e) {
+        return false
+    }
+}

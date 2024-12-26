@@ -12,9 +12,11 @@
   },
   "dependencies": {
     "@biomejs/biome": "^1.9.4",
+    "@cloudflare/workers-types": "^4.20241224.0",
     "@vueuse/core": "^12.2.0",
     "@vueuse/nuxt": "^12.2.0",
     "lucide-vue-next": "^0.469.0",
+    "nitro-cloudflare-dev": "^0.2.1",
     "nuxt": "^3.15.0",
     "nuxt-api-shield": "^0.8.0",
     "nuxt-csurf": "^1.6.5",
