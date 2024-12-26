@@ -4,16 +4,16 @@
 		<p>快速创建短链接</p>
 		<section>
 			<div class="input">
-				<input v-model="input" @keydown.enter="create" type="text" placeholder="在此输入您的网址或文本" maxlength="1024" />
-				<button @click="create">
+				<input v-model="input" @keydown.enter="create" :disabled="loading" type="text" placeholder="在此输入您的网址或文本" maxlength="1024" />
+				<button @click="create" :disabled="loading">
 					<Link2Icon class="icon"></Link2Icon>
 				</button>
 			</div>
 		</section>
 		<section>
 			<div class="input">
-				<input v-model="output" type="text" readonly class="copy" />
-				<button @click="copyOutput">
+				<input v-model="output" :disabled="loading" type="text" readonly class="copy" />
+				<button @click="copyOutput" :disabled="loading">
 					<ClipboardCheckIcon class="icon" v-if="copied"></ClipboardCheckIcon>
 					<CopyIcon class="icon" v-else></CopyIcon>
 				</button>
@@ -28,6 +28,7 @@ import { Link2Icon, CopyIcon, ClipboardCheckIcon } from 'lucide-vue-next'
 
 const { $csrfFetch } = useNuxtApp()
 
+const loading = ref(false)
 const input = ref('')
 const output = ref('')
 
@@ -38,10 +39,13 @@ watch(input, (newVal) => {
 })
 
 const create = async () => {
+	loading.value = true
+	
     input.value = input.value.trim()
 	
 	output.value = ''
     if (input.value === '') {
+	    loading.value = false
         return
     }
 
@@ -56,6 +60,7 @@ const create = async () => {
     })
 
     output.value = location.href + code
+	loading.value = false
 }
 
 const { copy, copied } = useClipboard({
