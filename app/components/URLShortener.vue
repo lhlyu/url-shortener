@@ -31,11 +31,17 @@ const { $csrfFetch } = useNuxtApp()
 const input = ref('')
 const output = ref('')
 
+watch(input, (newVal) => {
+	if (newVal.length === 0) {
+		output.value = ''
+	}
+})
+
 const create = async () => {
     input.value = input.value.trim()
-
+	
+	output.value = ''
     if (input.value === '') {
-        output.value = ''
         return
     }
 
