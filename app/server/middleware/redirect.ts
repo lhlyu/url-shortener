@@ -36,7 +36,7 @@ export default defineEventHandler(async (event) => {
             event,
             new Response(value, {
                 headers: {
-                    'Content-Type': 'text/plain',
+                    'Content-Type': 'text/plain; charset=utf-8',
                 },
             }),
         )
