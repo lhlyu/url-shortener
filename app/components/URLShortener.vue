@@ -33,19 +33,19 @@ const input = ref('')
 const output = ref('')
 
 watch(input, (newVal) => {
-	if (newVal.length === 0) {
-		output.value = ''
-	}
+    if (newVal.length === 0) {
+        output.value = ''
+    }
 })
 
 const create = async () => {
-	loading.value = true
-	
+    loading.value = true
+
     input.value = input.value.trim()
-	
-	output.value = ''
+
+    output.value = ''
     if (input.value === '') {
-	    loading.value = false
+        loading.value = false
         return
     }
 
@@ -60,7 +60,7 @@ const create = async () => {
     })
 
     output.value = location.href + code
-	loading.value = false
+    loading.value = false
 }
 
 const { copy, copied } = useClipboard({
